@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&amp;subset=korean" rel="stylesheet">
+	<title>게임 여성캐릭터</title>
+	<style>
+		body { background: black; }
+		#myTitle { color: white; text-align: center; font-size: 5em; font-family: 'Black Han Sans', sans-serif; margin-top: 50px; opacity: 0;}
+		#gameMachine { margin: auto; width: 1000px; opacity: 0; z-index: 2;
+			animation: gameScreen 2s 2s alternate forwards}
+		#gameMachine img { margin-top: 50px; width: 1000px; }
+
+		#onScreen img { height: 100px; position: absolute; left: 600px; top: 160px; }
+		#inScreen img { height: 280px; position: absolute; left: 680px; top: 500px; }
+		#onScreenImg { opacity: 0; }
+		#inScreenImg { opacity: 0; z-index: 3;}
+		#leftScreen img { height: 200px; position: absolute; left: 250px; top: 300px; }
+		#leftScreenImg { opacity: 0; }
+		#sudden img { height: 500px; position: absolute; left: 1400px; top: 500px; }
+		#suddenImg { opacity: 0; }
+		/**/
+		#bar { width: 50px; height: 500px; background: yellow; position: absolute; margin-left: 50px; top: 0px; z-index: -1; animation: down 4s alternate forwards cubic-bezier(.51,.11,0,1) }
+		#bar2 { width: 50px; height: 500px; background: orange; position: absolute; margin-left: 200px; top: 0px; z-index: -1; animation: down 4s 0.2s alternate forwards cubic-bezier(.51,.11,0,1) }
+		#bar3 { width: 50px; height: 500px; background: tomato; position: absolute; margin-left: 350px; top: 0px; z-index: -1; animation: down 4s 0.4s alternate forwards cubic-bezier(.51,.11,0,1) }
+		#bar4 { width: 50px; height: 500px; background: dodgerblue; position: absolute; margin-left: 500px; top: 0px; z-index: -1; animation: down 4s 0.6s alternate forwards cubic-bezier(.51,.11,0,1) }
+		/**/
+		#suddenVideo { position: absolute; width: 625px; height: 350px; left: 645px; top: 418px; border-radius: 1%; z-index: 4;
+			animation: moveVideo 2s forwards paused;}
+		#ffffImg { position: absolute; width: 625px; height: 350px; left: 645px; top: 418px; border-radius: 1%; z-index: 4; opacity: 0;
+			animation: moveVideo 2s forwards paused; }
+
+
+		@keyframes down {
+			from { height: 0px; }
+			to { height: 1080px; }
+		}
+
+		@keyframes gameScreen {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+		@keyframes moveVideo {
+			from { width: 0px; height: 0px;}
+			to { width: 625px; height: 350px; }
+
+	</style>
+</head>
+<body>
+	<div id="test"></div>
+	<div id="myTitle">
+		??? 노출도=전투력 ???
+	</div>
+	<div id="inScreen">
+		<img id="inScreenImg" src="1.gif">
+	</div>
+	<div id="gameMachine">
+		<img src="오락기.png">
+	</div>
+	<div id="onScreen">
+		<img id="onScreenImg" src="아사미야.gif">
+	</div>
+	<div id="leftScreen">
+		<img id="leftScreenImg" src="빨간총.gif">
+	</div>
+	<div id="sudden">
+		<img id="suddenImg" src="서든어택1.png">
+	</div>
+
+	<div id="bar"></div>
+	<div id="bar2"></div> <div id="bar3"></div><div id="bar4"></div>
+
+	<div>
+		<video id="suddenVideo">
+		<source src="서든어택2.mp4" type="video/mp4">
+		</video>
+	</div>
+	<div id="ffff">
+		<img id="ffffImg" src="fuck.gif">
+	</div>
+	
+
+	<script type="text/javascript">
+		gameMachine.onclick = function() {
+			myTitle.style.opacity = 1;
+			onScreenImg.style.opacity = 1;
+			inScreenImg.style.opacity = 1;
+			leftScreenImg.style.opacity = 1;
+			suddenImg.style.opacity = 1;
+			bar.style.opacity = 0.2;
+			bar2.style.opacity = 0.2;
+			bar3.style.opacity = 0.2;
+			bar4.style.opacity = 0.2;
+		}
+
+		var toggle = "off";
+		inScreen.onclick = function() {
+
+
+			if (toggle=="off") {
+				inScreenImg.setAttribute("src","2.gif");
+				inScreenImg.style.height = 210 + "px";
+				inScreenImg.style.top = 570 + "px";
+				toggle = "on";
+			} else {
+				inScreenImg.setAttribute("src","1.gif");
+				inScreenImg.style.height = 280 + "px";
+				inScreenImg.style.top = 500 + "px";
+				toggle = "off";
+			}
+		}
+
+		var a = 1;
+		suddenImg.onclick = function() {
+			if (a==1) {
+			suddenVideo.style.opacity = 1;
+			suddenVideo.style.animationPlayState = "running";
+			suddenVideo.play();
+			inScreenImg.style.opacity = 0;
+			a = 2;
+			}else {
+				suddenVideo.pause();
+				suddenVideo.style.zIndex = 0;
+				suddenVideo.style.opacity = 0;
+				inScreenImg.style.opacity = 1;
+				a = 1;
+			}
+		}
+
+		var b = 1;
+		leftScreenImg.onclick = function() {
+			if (b==1) {
+			ffffImg.style.animationPlayState = "running";
+			ffffImg.style.opacity = 1;
+			inScreenImg.style.opacity = 0;
+			ffffImg.style.zIndex = 4;
+			b = 2;
+			}else {
+				ffffImg.style.zIndex = 0;
+				ffffImg.style.opacity = 0;
+				inScreenImg.style.opacity = 1;
+				b = 1;
+			}
+		}
+
+		/*
+		for(var i=0; i<10; i++) {
+			var a = document.getElementById("bar")
+			var b = a.cloneNode(true);
+			b.style.marginLeft = i * 100 + 50 + "px";
+		}*/
+
+	</script>
+</body>
+</html>
